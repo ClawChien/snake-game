@@ -504,15 +504,21 @@
         const radius = 4;
         ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
         
-        // 使用路徑繪製圓角矩形
+        // 繪製圓角矩形 (兼容性處理)
+        const size = gridSize - padding * 2;
+        const xPos = x + padding;
+        const yPos = y + padding;
         ctx.beginPath();
-        ctx.roundRect(
-          x + padding,
-          y + padding,
-          gridSize - padding * 2,
-          gridSize - padding * 2,
-          radius
-        );
+        ctx.moveTo(xPos + radius, yPos);
+        ctx.lineTo(xPos + size - radius, yPos);
+        ctx.quadraticCurveTo(xPos + size, yPos, xPos + size, yPos + radius);
+        ctx.lineTo(xPos + size, yPos + size - radius);
+        ctx.quadraticCurveTo(xPos + size, yPos + size, xPos + size - radius, yPos + size);
+        ctx.lineTo(xPos + radius, yPos + size);
+        ctx.quadraticCurveTo(xPos, yPos + size, xPos, yPos + size - radius);
+        ctx.lineTo(xPos, yPos + radius);
+        ctx.quadraticCurveTo(xPos, yPos, xPos + radius, yPos);
+        ctx.closePath();
         ctx.fill();
 
         // 蛇頭特別標記
