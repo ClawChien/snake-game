@@ -1,0 +1,24 @@
+# Static site .gitignore
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+*.log
+
+# node_modules (if using npm)
+node_modules/
+
+# Build outputs
+dist/
+build/
